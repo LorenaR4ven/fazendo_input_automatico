@@ -20,6 +20,44 @@ def enviar_atalho():
         print("Atalho Shift + Alt + Ctrl + W enviado!")
     threading.Thread(target=baixarphotoshop).start() 
 
+def layout_arq():
+    def definir_layout():
+        keyboard = Controller()
+
+        time.sleep(0.5)
+        keyboard.press(Key.shift)
+        keyboard.press(Key.ctrl)
+        keyboard.press('2')
+
+        keyboard.release('2')
+        keyboard.release(Key.ctrl)
+        keyboard.release(Key.shift)
+        print("Atalho Shift + Ctrl + 2 enviado!")
+    threading.Thread(target=definir_layout).start()
+
+def colar_apos():
+    def colarapos():
+        keyboard = Controller()
+
+        time.sleep(1.5)
+        keyboard.tap(Key.f2)
+        time.sleep(0.2)
+        keyboard.tap(Key.right)
+
+        time.sleep(0.2)
+        keyboard.press(Key.ctrl)
+        keyboard.press('v')
+        keyboard.release('v')
+        keyboard.release(Key.ctrl)
+
+        time.sleep(0.2)
+        keyboard.tap(Key.enter)
+        time.sleep(0.2)
+        keyboard.tap(Key.right)
+
+        print("colar_após enviado!")
+    threading.Thread(target=colarapos).start()
+
 
 # --- Configuração da janela ---
 
@@ -42,13 +80,43 @@ btn_exportar = ctk.CTkButton(
     card,
     text="Exportar",
     command=acao_exportar,
-    height=44,
+    height=30,
     corner_radius=14,
     fg_color="#ffffff",
     hover_color="#e9e9e9",
     text_color="#0f2230"
 )
-btn_exportar.pack(pady=(6, 26), padx=18, fill="x")
+btn_exportar.pack(pady=(6,6), padx=18, fill="x")
+
+def acao_definir_layout():
+    layout_arq()
+
+btn_layout = ctk.CTkButton(
+    card,
+    text="Layout",
+    command=acao_definir_layout,
+    height=30,
+    corner_radius=14,
+    fg_color="#ffffff",
+    hover_color="#e9e9e9",
+    text_color="#0f2230"
+)
+btn_layout.pack(pady=(6, 6), padx=18, fill="x")
+
+def acao_colar_apos():
+    colar_apos()
+
+btn_layout = ctk.CTkButton(
+    card,
+    text="colar após",
+    command=acao_colar_apos,
+    height=30,
+    corner_radius=14,
+    fg_color="#ffffff",
+    hover_color="#e9e9e9",
+    text_color="#0f2230"
+)
+btn_layout.pack(pady=(6, 6), padx=18, fill="x")
 
 # spacer = ctk.CTkLabel(card, text="")
 # spacer.pack(expand=True)
